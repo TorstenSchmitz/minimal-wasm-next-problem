@@ -1,9 +1,9 @@
-import { BigInt } from '@emurgo/cardano-serialization-lib-nodejs';
+import * as pgp from '@torstenschmitz/wasm-rpgp'
 
 export default function Home() {
   return (
     <>
-      {BigInt.from_str('1234').to_str()}
+      {pgp.is_encrypted("plaintext")}
     </>
   )
 }

@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emurgo/cardano-serialization-lib-nodejs": "^11.5.0",
+    "@torstenschmitz/wasm-rpgp": "~0.1.7",
     "next": "canary",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
