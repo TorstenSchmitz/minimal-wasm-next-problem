@@ -84,10 +84,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@torstenschmitz/wasm-rpgp@npm:~0.1.7":
-  version: 0.1.7
-  resolution: "@torstenschmitz/wasm-rpgp@npm:0.1.7"
-  checksum: 6eedf1369a4ce48ea7895080c7c363cfab0287876e5208e3b0a7fdfc93c762651d6e2772e02300e22106205f67864aebd7dcab0689fc17e330d2a383756ad8c2
+"@torstenschmitz/wasm-rpgp@npm:~0.1.8":
+  version: 0.1.8
+  resolution: "@torstenschmitz/wasm-rpgp@npm:0.1.8"
+  checksum: e89d201ee4f8f5049ae4b31985ce7064ceaf33d433eb0e3ef5f43283eb26cf3414d82ecdc33e2e4b8b86f3a6f0932643f6d2ee2a1ed3e514b8dc29773f09e3f6
   languageName: node
   linkType: hard
 
@@ -285,7 +285,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@torstenschmitz/wasm-rpgp": "npm:~0.1.7"
+    "@torstenschmitz/wasm-rpgp": "npm:~0.1.8"
     "@types/node": "npm:20.4.5"
     "@types/react": "npm:18.2.18"
     next: "npm:canary"
