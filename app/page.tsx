@@ -1,9 +1,16 @@
-import * as pgp from '@torstenschmitz/wasm-rpgp'
+"use client";
 
+import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
-async function encrypt_something() {
-  const key = await pgp.readKey({
-    ArmoredKey: `
+export default dynamic(
+  async function PageComponent() {
+    const pgp = await import('@torstenschmitz/wasm-rpgp');
+    return function PageCOmponentLoaded() {
+      useEffect(() => {
+        async function encrypt_something(pgp) {
+          const key = await pgp.readKey({
+            ArmoredKey: `
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mDMEZYwaaRYJKwYBBAHaRw8BAQdAB1/IdgODR7Qf3I41YB2cGNpWMzF9UWi84EGt
@@ -18,11 +25,11 @@ AhsMAAoJEJjScL38tHuJpccA/17HGTXV42Wj8GTnp9SXls4jOnN7oCBl+vN1p2+y
 =q9nC
 -----END PGP PUBLIC KEY BLOCK-----
   `});
-  let str = pgp.encrypt_message(key, "Something encrypted")
+          let str = pgp.encrypt_message(key, "Something encrypted")
 
-  let msg = await pgp.createMessage({Text: str})
-  let privkeys = await pgp.readPrivateKey({
-    ArmoredKey: `
+          let msg = await pgp.createMessage({Text: str})
+          let privkeys = await pgp.readPrivateKey({
+            ArmoredKey: `
 -----BEGIN PGP PRIVATE KEY BLOCK-----
 
 lFgEZYwaaRYJKwYBBAHaRw8BAQdAB1/IdgODR7Qf3I41YB2cGNpWMzF9UWi84EGt
@@ -40,14 +47,16 @@ R5mGXy9CW2zZcFbuUiEI
 -----END PGP PRIVATE KEY BLOCK-----
   `})
 
-  let data = new pgp.DecryptionData(msg, privkeys)
-  return await pgp.decrypt(data, ()=>"")
-}
-
-export default function Home() {
-  return (
-    <>
-      {encrypt_something()}
-    </>
-  )
-}
+          let data = new pgp.DecryptionData(msg, privkeys)
+          return await pgp.decrypt(data, ()=>"")
+        }
+        encrypt_something(pgp)
+      }, []);
+      return <p> done </p>;
+    };
+  },
+  {
+    ssr: false,
+    loading: () => <p>Loading WASM...</p>
+  },
+);
