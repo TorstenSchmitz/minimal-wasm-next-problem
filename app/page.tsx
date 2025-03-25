@@ -1,4 +1,5 @@
-import dynamic from 'next/dynamic'
+"use client";
+import dynamic from 'next/dynamic';
 
 export default dynamic(
   async function Home() {
@@ -12,7 +13,7 @@ export default dynamic(
     }
   },
   {
-    ssr: true,
+    ssr: false,
     loading: () => <p> Loading WASM .. </p>
   },
 );

@@ -1,13 +1,20 @@
-/** @type {import("next").NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  webpack: (config, options) => {
-    config.experiments = {
-      asyncWebAssembly: true,
-      layers: true,
-    }
-    return config
-  },
-}
+	reactStrictMode: true,
+	output: "export",
+	experimental: {
+		turbo: {
+			// turbopack
+		},
+	},
+	webpack: (config, { isServer, webpack }) => {
+		config.experiments = {
+			asyncWebAssembly: true,
+			layers: true,
+		};
+		config.resolve.fallback = { fs: false };
+		return config;
+	},
+};
 
-module.exports = nextConfig;
+export default nextConfig;
